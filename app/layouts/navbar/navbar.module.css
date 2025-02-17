@@ -27,6 +27,7 @@
   .logo {
     display: flex;
     position: relative;
+    left:30%;
     padding: var(--spaceS) var(--spaceS) var(--spaceL);
     z-index: var(--zIndex2);
 
@@ -77,6 +78,7 @@
     &::after {
       content: '';
       position: absolute;
+      left: 20%;
       inset-inline-start: var(--spaceS);
       inset-inline-end: var(--spaceS);
       block-size: 4px;
@@ -205,7 +207,7 @@
     &::after {
       content: '';
       position: absolute;
-      top: 50%;
+      top: 70%;
       right: var(--space3XL);
       left: var(--space3XL);
       height: 4px;

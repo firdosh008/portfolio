@@ -10,13 +10,12 @@ import { Text } from '~/components/text';
 import { tokens } from '~/components/theme-provider/theme';
 import { Transition } from '~/components/transition';
 import { useFormInput } from '~/hooks';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { cssProps, msToNum, numToMs } from '~/utils/style';
 import { baseMeta } from '~/utils/meta';
 import { Form, useActionData, useNavigation } from '@remix-run/react';
-import { json } from '@remix-run/cloudflare';
-import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import styles from './contact.module.css';
+import emailjs from '@emailjs/browser';
 
 export const meta = () => {
   return baseMeta({
@@ -30,69 +29,6 @@ const MAX_EMAIL_LENGTH = 512;
 const MAX_MESSAGE_LENGTH = 4096;
 const EMAIL_PATTERN = /(.+)@(.+){2,}\.(.+){2,}/;
 
-export async function action({ context, request }) {
-  const ses = new SESClient({
-    region: 'us-east-1',
-    credentials: {
-      accessKeyId: context.cloudflare.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: context.cloudflare.env.AWS_SECRET_ACCESS_KEY,
-    },
-  });
-
-  const formData = await request.formData();
-  const isBot = String(formData.get('name'));
-  const email = String(formData.get('email'));
-  const message = String(formData.get('message'));
-  const errors = {};
-
-  // Return without sending if a bot trips the honeypot
-  if (isBot) return json({ success: true });
-
-  // Handle input validation on the server
-  if (!email || !EMAIL_PATTERN.test(email)) {
-    errors.email = 'Please enter a valid email address.';
-  }
-
-  if (!message) {
-    errors.message = 'Please enter a message.';
-  }
-
-  if (email.length > MAX_EMAIL_LENGTH) {
-    errors.email = `Email address must be shorter than ${MAX_EMAIL_LENGTH} characters.`;
-  }
-
-  if (message.length > MAX_MESSAGE_LENGTH) {
-    errors.message = `Message must be shorter than ${MAX_MESSAGE_LENGTH} characters.`;
-  }
-
-  if (Object.keys(errors).length > 0) {
-    return json({ errors });
-  }
-
-  // Send email via Amazon SES
-  await ses.send(
-    new SendEmailCommand({
-      Destination: {
-        ToAddresses: [context.cloudflare.env.EMAIL],
-      },
-      Message: {
-        Body: {
-          Text: {
-            Data: `From: ${email}\n\n${message}`,
-          },
-        },
-        Subject: {
-          Data: `Portfolio message from ${email}`,
-        },
-      },
-      Source: `Portfolio <${context.cloudflare.env.FROM_EMAIL}>`,
-      ReplyToAddresses: [email],
-    })
-  );
-
-  return json({ success: true });
-}
-
 export const Contact = () => {
   const errorRef = useRef();
   const email = useFormInput('');
@@ -100,11 +36,47 @@ export const Contact = () => {
   const initDelay = tokens.base.durationS;
   const actionData = useActionData();
   const { state } = useNavigation();
-  const sending = state === 'submitting';
+  const [success, setSuccess] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [sending, setSending] = useState(false);
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    setSending(true);
+    setErrors({});
+
+    if (!email.value || !/.+@.+\..+/.test(email.value)) {
+      setErrors((prev) => ({ ...prev, email: 'Please enter a valid email address.' }));
+      setSending(false);
+      return;
+    }
+    if (!message.value) {
+      setErrors((prev) => ({ ...prev, message: 'Please enter a message.' }));
+      setSending(false);
+      return;
+    }
+
+    try {
+      await emailjs.send(
+        'service_kgkw9mr', 
+        'template_y8vhwqq', 
+        {
+          email: email.value,
+          message: message.value,
+        },
+        'il0zj6ZLldwJH_0tL'
+      );
+      setSuccess(true);
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setErrors((prev) => ({ ...prev, message: 'Failed to send message. Please try again later.' }));
+    }
+    setSending(false);
+  };
 
   return (
     <Section className={styles.contact}>
-      <Transition unmount in={!actionData?.success} timeout={1600}>
+      <Transition unmount in={!success} timeout={1600}>
         {({ status, nodeRef }) => (
           <Form
             unstable_viewTransition
@@ -190,14 +162,15 @@ export const Contact = () => {
               loading={sending}
               loadingText="Sending..."
               icon="send"
-              type="submit"
+              type="button"
+              onClick={sendEmail}
             >
               Send message
             </Button>
           </Form>
         )}
       </Transition>
-      <Transition unmount in={actionData?.success}>
+      <Transition unmount in={success}>
         {({ status, nodeRef }) => (
           <div className={styles.complete} aria-live="polite" ref={nodeRef}>
             <Heading
