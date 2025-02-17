@@ -5,7 +5,7 @@ addons.setConfig({
   theme: {
     ...themes.dark,
     brandImage: './icon.svg',
-    brandTitle: 'Firdohs ahmad Components',
+    brandTitle: 'Firdosh ahmad Components',
     brandUrl: 'https://hamishw.com',
   },
 });
