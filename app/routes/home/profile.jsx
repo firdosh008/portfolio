@@ -28,7 +28,7 @@ const ProfileText = ({ visible, titleId }) => (
       <p><strong>Tools:</strong> Docker, Postman, Firebase, Git</p>
     </Text>
   
-    <Text className={styles.description} data-visible={visible} size="l" as="p">
+    <Text className={styles.description} data-visible={visible} size="l" >
       Education Timeline:
     <div className={styles.timeline} data-visible={visible}>
       <div className={styles.timelineItem}>
