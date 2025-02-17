@@ -6,7 +6,6 @@ import { DecoderText } from '~/components/decoder-text';
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
 import { Image } from '~/components/image';
-import { Link } from '~/components/link';
 import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { Transition } from '~/components/transition';
@@ -21,16 +20,28 @@ const ProfileText = ({ visible, titleId }) => (
       <DecoderText text="Hi there" start={visible} delay={500} />
     </Heading>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      I’m Hamish, currently I live in Sydney working as a senior product designer at{' '}
-      <Link href="https://www.qwilr.com">Qwilr</Link>. My projects include UX design, UI
-      animations, and icon illustration. Being comfortable with code allows me to rapidly
-      prototype and validate experiences. If you’re interested in the tools and software I
-      use check out my <Link href="/uses">uses page</Link>.
+    I'm a full-stack software engineer with articles in scalable web apps, AI-driven platforms, and crypto tools. I specialize in building intuitive, high-performance, and accessible digital experiences that drive innovation.
+    </Text>
+    <Text className={styles.description} data-visible={visible} size="l" >
+      <p><strong>Frontend:</strong> React.js, Next.js, TypeScript, Tailwind CSS</p>
+      <p><strong>Backend:</strong> Node.js, Express.js, MongoDB, SQL</p>
+      <p><strong>Tools:</strong> Docker, Postman, Firebase, Git</p>
+    </Text>
+  
+    <Text className={styles.description} data-visible={visible} size="l" as="p">
+      Education Timeline:
+    <div className={styles.timeline} data-visible={visible}>
+      <div className={styles.timelineItem}>
+        <div className={styles.timelineDate}>2021 - 2025</div>
+        <div className={styles.timelineContent}>
+          <strong>B.Tech in Computer Science</strong>
+          <p>Graphic Era University, India</p>
+        </div>
+      </div>
+      </div>
     </Text>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      In my spare time I like to practice Brazilian Jiu Jitsu, play video games, and{' '}
-      <Link href="/projects/volkihar-knight">make mods</Link>. I’m always down for hearing
-      about new projects, so feel free to drop me a line.
+      I’m always excited to learn, experiment, and collaborate on projects that push boundaries. Let’s build something amazing together! 🚀.
     </Text>
   </Fragment>
 );
