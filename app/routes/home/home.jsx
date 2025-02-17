@@ -1,13 +1,11 @@
 import gamestackTexture2Large from '~/assets/gamestack-list-large.jpg';
 import gamestackTexture2Placeholder from '~/assets/gamestack-list-placeholder.jpg';
-import gamestackTexture2 from '~/assets/gamestack-list.jpg';
 import gamestackTextureLarge from '~/assets/gamestack-login-large.jpg';
+import animartLarge from '~/assets/animartLarge.jpg';
+import animart2Large from '~/assets/animartLarge2.jpg';
 import gamestackTexturePlaceholder from '~/assets/gamestack-login-placeholder.jpg';
-import gamestackTexture from '~/assets/gamestack-login.jpg';
 import sliceTextureLarge from '~/assets/slice-app-large.jpg';
 import sliceTexturePlaceholder from '~/assets/slice-app-placeholder.jpg';
-import sliceTexture from '~/assets/slice-app.jpg';
-import sprTextureLarge from '~/assets/spr-lesson-builder-dark-large.jpg';
 import sprTexturePlaceholder from '~/assets/spr-lesson-builder-dark-placeholder.jpg';
 import sprTexture from '~/assets/spr-lesson-builder-dark.jpg';
 import { Footer } from '~/components/footer';
@@ -42,7 +40,7 @@ export const links = () => {
 export const meta = () => {
   return baseMeta({
     title: 'Designer + Developer',
-    description: `Design portfolio of ${config.name} — a product designer working on web & mobile apps with a focus on motion, experience design, and accessibility.`,
+    description: `Design portfolio of ${config.name} — a product designer working on web & mobile apps with a focus on motion, articles design, and accessibility.`,
   });
 };
 
@@ -103,16 +101,16 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="Designing the future of education"
-        description="Designing a platform to help educators build better online courseware"
-        buttonText="View project"
-        buttonLink="/projects/smart-sparrow"
+        title="Preplix"
+        description="Design and development an online learning platform for higher educators built in Next.js"
+        buttonText="View Website"
+        buttonLink="https://preplix.com/"
         model={{
           type: 'laptop',
           alt: 'Smart Sparrow lesson builder',
           textures: [
             {
-              srcSet: `${sprTexture} 1280w, ${sprTextureLarge} 2560w`,
+              srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
               placeholder: sprTexturePlaceholder,
             },
           ],
@@ -124,20 +122,20 @@ export const Home = () => {
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="Video game progress tracking"
-        description="Design and development for a video game tracking app built in React Native"
+        title="Flexi App"
+        description="Designed and developed a lending services application in React Native, catering to business entities for their operational needs and employees of MSME organizations for emergency financial requirements"
         buttonText="View website"
-        buttonLink="https://gamestack.hamishw.com"
+        buttonLink="https://play.google.com/store/apps/details?id=com.madhurinstalments.flexipaisa&hl=en_IN"
         model={{
           type: 'phone',
           alt: 'App login screen',
           textures: [
             {
-              srcSet: `${gamestackTexture} 375w, ${gamestackTextureLarge} 750w`,
+              srcSet: `${gamestackTextureLarge} 375w, ${gamestackTextureLarge} 750w`,
               placeholder: gamestackTexturePlaceholder,
             },
             {
-              srcSet: `${gamestackTexture2} 375w, ${gamestackTexture2Large} 750w`,
+              srcSet: `${gamestackTexture2Large} 375w, ${gamestackTexture2Large} 750w`,
               placeholder: gamestackTexture2Placeholder,
             },
           ],
@@ -148,17 +146,42 @@ export const Home = () => {
         sectionRef={projectThree}
         visible={visibleSections.includes(projectThree.current)}
         index={3}
-        title="Biomedical image collaboration"
-        description="Increasing the amount of collaboration in Slice, an app for biomedical imaging"
-        buttonText="View project"
-        buttonLink="/projects/slice"
+        title="The Crazy Mountaineers"
+        description="Designed and developed a dynamic travel agency website in React with booking functionality and an interactive dashboard for seamless management."
+        buttonText="View Website"
+        buttonLink="http://thecrazymountaineers.in.s3-website.ap-south-1.amazonaws.com/"
         model={{
           type: 'laptop',
           alt: 'Annotating a biomedical image in the Slice app',
           textures: [
             {
-              srcSet: `${sliceTexture} 800w, ${sliceTextureLarge} 1920w`,
+              srcSet: `${sliceTextureLarge} 800w, ${sliceTextureLarge} 1920w`,
               placeholder: sliceTexturePlaceholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-4"
+        alternate
+        sectionRef={projectThree}
+        visible={visibleSections.includes(projectThree.current)}
+        index={4}
+        title="Animart"
+        description="Built a secure, scalable e-commerce platform using MERN stack, boosting engagement by 10%."
+        buttonText="View Website"
+        buttonLink="https://anymart.onrender.com/"
+        model={{
+          type: 'phone',
+          alt: 'App login screen',
+          textures: [
+            {
+              srcSet: `${animartLarge} 375w, ${animartLarge} 750w`,
+              placeholder: gamestackTexturePlaceholder,
+            },
+            {
+              srcSet: `${animart2Large} 375w, ${animart2Large} 750w`,
+              placeholder: gamestackTexture2Placeholder,
             },
           ],
         }}
