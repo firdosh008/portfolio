@@ -1,9 +1,11 @@
 {
-  "name": "Firdosh Ahmad",
-  "role": "Developer",
-  "disciplines": ["Designer", "Animator", "For Website", "For Mobile", "For Desktop"],
-  "url": "https:/",
-  "github": "firdosh008",
-  "repo": "https://github.com/firdosh008/Portfolio",
+  "name": "Firdosh ahmad",
+  "role": "Designer",
+  "disciplines": ["Developer", "Prototyper", "Animator", "Illustrator", "Modder"],
+  "url": "https://hamishw.com",
+  "bluesky": "hamishw.com",
+  "figma": "@Hamish",
+  "github": "HamishMW",
+  "repo": "https://github.com/HamishMW/portfolio",
   "ascii": "__  __  __\n\u005C \u005C \u005C \u005C \u005C\u2215\n \u005C \u005C\u2215\u005C \u005C\n  \u005C\u2215  \u005C\u2215\n"
 }
