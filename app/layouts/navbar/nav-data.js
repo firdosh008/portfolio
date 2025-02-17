@@ -28,6 +28,6 @@ export const socialLinks = [
   {
     label: 'Linkdin',
     url: `https://www.linkedin.com/in/ahmadfirdosh}`,
-    icon: 'linkdin',
+    icon: 'linkedin',
   },
 ];
