@@ -58,8 +58,8 @@ export const Contact = () => {
 
     try {
       await emailjs.send(
-        'service_kgkw9mr', 
-        'template_y8vhwqq', 
+        'service_kgkw9mr',
+        'template_y8vhwqq',
         {
           email: email.value,
           message: message.value,
@@ -153,20 +153,34 @@ export const Contact = () => {
                 </div>
               )}
             </Transition>
-            <Button
-              className={styles.button}
-              data-status={status}
-              data-sending={sending}
-              style={getDelay(tokens.base.durationM, initDelay)}
-              disabled={sending}
-              loading={sending}
-              loadingText="Sending..."
-              icon="send"
-              type="button"
-              onClick={sendEmail}
-            >
-              Send message
-            </Button>
+            <div className={styles.buttonContainer}>
+              <Button
+                className={styles.button}
+                data-status={status}
+                data-sending={sending}
+                style={getDelay(tokens.base.durationM, initDelay)}
+                disabled={sending}
+                loading={sending}
+                loadingText="Sending..."
+                icon="send"
+                type="button"
+                onClick={sendEmail}
+              >
+                Send message
+              </Button>
+
+              <Button
+                className={styles.button}
+                data-status={status}
+                data-sending={sending}
+                style={getDelay(tokens.base.durationM, initDelay)}
+                icon="send"
+                disabled={true}
+              >
+                +91 7017282924
+              </Button>
+            </div>
+
           </Form>
         )}
       </Transition>

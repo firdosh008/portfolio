@@ -141,6 +141,18 @@
   display: none;
 }
 
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  @media (--mediaMobile) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
 .button {
   --buttonLoaderDelay: var(--durationL);
 
