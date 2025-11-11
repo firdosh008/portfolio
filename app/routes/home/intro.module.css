@@ -118,6 +118,10 @@
   transition: opacity 0.5s ease var(--durationM);
   isolation: isolate;
 
+  &[data-plus='true'] {
+    font-size: 0.65em;
+  }
+
   &::after {
     content: '';
     background: var(--accent);

@@ -16,18 +16,32 @@ import styles from './articles.module.css';
 
 const jsonData = [
   {
-    "title": "Multi object Tracking System",
-    "abstract": "Presented a multi-object tracking system with MOTA score of 78.1 at the IEEE GCAT conference, under guidance of professor Akash Chauhan.",
-    "date": "2024-02-01",
-    "end": "2024-04-30",
+    "title": "Full Stack Developer - LLMCONTROLS",
+    "company": "Zemuria Venture Studio",
+    "location": "Pondicherry",
+    "abstract": "Developing a software platform for AI workflow management and multi-agent orchestration, enabling customization across LLMs, vector databases, and AI tools. Building and maintaining the frontend using React.js and the backend using Python (Django, FastAPI). Collaborating on API integrations, system scalability, to optimize end-to-end performance.",
+    "date": "2025-04-01",
+    "end": "Present",
     "banner": "/static/modern-styling-in-react-banner.jpg",
     "featured": true
   },
   {
-    "title": "One for life",
-    "abstract": "Designed scalable solutions in a multinational team, improving UI/UX and API integration for enhanced user experience and security.",
-    "date": "2023-12-09",
-    "end": "2024-01-12",
+    "title": "Frontend Developer - E-learning Platform | Financial services App",
+    "company": "One-For-Life",
+    "location": "Remote",
+    "abstract": "Developed the frontend for two major platforms: an online GRE/IELTS prep platform and the Flexi-Paisa financial services app. Built responsive UIs with React.js, Next.js, and Material UI, designing 9 mobile and 12 web screens in collaboration with an 8-member cross-functional team. Integrated REST APIs for authentication, course flow, and payment modules using Axios and Postman, improving UX by 8% based on user feedback.",
+    "date": "2023-09-30",
+    "end": "2025-03-01",
+    "banner": "/static/hello-world-banner.jpg",
+    "featured": false
+  },
+  {
+    "title": "Research - Multi-Object Tracking System",
+    "company": "IEEE GCAT Conference",
+    "location": "Academic Research",
+    "abstract": "Presented a multi-object tracking system achieving MOTA score of 78.1 at the IEEE GCAT conference. Implemented computer vision algorithms using deep learning frameworks for real-time object detection and tracking. Conducted research under the guidance of Professor Akash Chauhan, focusing on improving tracking accuracy in complex scenarios.",
+    "date": "2024-02-01",
+    "end": "2024-04-30",
     "banner": "/static/hello-world-banner.jpg",
     "featured": false
   }
@@ -38,7 +52,7 @@ function ArticlesPost({ frontmatter, index }) {
   const [dateTime, setDateTime] = useState(null);
   const [dateEnd, setDateEnd] = useState(null);
   const reduceMotion = useReducedMotion();
-  const { title, abstract, date, end, featured, banner } = frontmatter;
+  const { title, company, location, abstract, date, end, featured, banner } = frontmatter;
 
   useEffect(() => {
     setDateTime(formatDate(date));
@@ -77,7 +91,12 @@ function ArticlesPost({ frontmatter, index }) {
           <Heading as="h2" level={featured ? 2 : 4}>
             {title}
           </Heading>
-          <Text size={featured ? 'l' : 's'} as="p">
+          {company && (
+            <Text size="s" style={{ fontStyle: 'italic', marginTop: '8px', color: 'var(--textLight)' }}>
+              {company} | {location}
+            </Text>
+          )}
+          <Text size={featured ? 'l' : 's'} as="p" style={{ marginTop: '12px' }}>
             {abstract}
           </Text>
           <div className={styles.postFooter}>
@@ -119,7 +138,7 @@ export function Experience() {
   const postsHeader = (
     <header className={styles.header}>
       <Heading className={styles.heading} level={5} as="h1">
-        Latest Experience
+        Industrial Experience (2+ years)
       </Heading>
     </header>
   );
@@ -130,7 +149,6 @@ export function Experience() {
       {postsData.map((post, index) => (
         <ArticlesPost key={index} index={index} frontmatter={post} />
       ))}
-      <SkeletonPost />
     </div>
   );
 

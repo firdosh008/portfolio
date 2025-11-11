@@ -39,22 +39,27 @@ export const links = () => {
 
 export const meta = () => {
   return baseMeta({
-    title: 'Designer + Developer',
-    description: `Design portfolio of ${config.name} — a product designer working on web & mobile apps with a focus on motion, articles design, and accessibility.`,
+    title: 'Full-Stack Developer',
+    description: `Portfolio of ${config.name} — a full-stack software engineer specializing in scalable web apps, AI-driven platforms, and blockchain solutions.`,
   });
 };
 
 export const Home = () => {
   const [visibleSections, setVisibleSections] = useState([]);
   const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
+  const [showAllProjects, setShowAllProjects] = useState(false);
   const intro = useRef();
   const projectOne = useRef();
   const projectTwo = useRef();
   const projectThree = useRef();
+  const projectFour = useRef();
+  const projectFive = useRef();
+  const projectSix = useRef();
+  const projectSeven = useRef();
   const details = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, details];
+    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, projectSeven, details];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -78,7 +83,9 @@ export const Home = () => {
     );
 
     sections.forEach(section => {
-      sectionObserver.observe(section.current);
+      if (section.current) {
+        sectionObserver.observe(section.current);
+      }
     });
 
     indicatorObserver.observe(intro.current);
@@ -102,12 +109,12 @@ export const Home = () => {
         visible={visibleSections.includes(projectOne.current)}
         index={1}
         title="Preplix"
-        description="Design and development an online learning platform for higher educators built in Next.js"
+        description="Designed and developed a scalable online learning platform for higher education using Next.js, featuring real-time progress tracking and interactive course management"
         buttonText="View Website"
         buttonLink="https://preplix.com/"
         model={{
           type: 'laptop',
-          alt: 'Smart Sparrow lesson builder',
+          alt: 'Preplix learning platform',
           textures: [
             {
               srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
@@ -122,13 +129,13 @@ export const Home = () => {
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="Flexi App"
-        description="Designed and developed a lending services application in React Native, catering to business entities for their operational needs and employees of MSME organizations for emergency financial requirements"
-        buttonText="View website"
+        title="FlexiPaisa"
+        description="Built a production-grade lending services mobile application using React Native, serving business entities and MSME employees with secure loan management and real-time tracking"
+        buttonText="View on Play Store"
         buttonLink="https://play.google.com/store/apps/details?id=com.madhurinstalments.flexipaisa&hl=en_IN"
         model={{
           type: 'phone',
-          alt: 'App login screen',
+          alt: 'FlexiPaisa mobile app',
           textures: [
             {
               srcSet: `${gamestackTextureLarge} 375w, ${gamestackTextureLarge} 750w`,
@@ -146,13 +153,13 @@ export const Home = () => {
         sectionRef={projectThree}
         visible={visibleSections.includes(projectThree.current)}
         index={3}
-        title="The Crazy Mountaineers"
-        description="Designed and developed a dynamic travel agency website in React with booking functionality and an interactive dashboard for seamless management."
+        title="LLM Controls"
+        description="Built an advanced AI control platform for managing and monitoring large language models with real-time analytics, prompt optimization, and security controls"
         buttonText="View Website"
-        buttonLink="http://thecrazymountaineers.in.s3-website.ap-south-1.amazonaws.com/"
+        buttonLink="https://app.llmcontrols.ai/"
         model={{
           type: 'laptop',
-          alt: 'Annotating a biomedical image in the Slice app',
+          alt: 'LLM Controls platform',
           textures: [
             {
               srcSet: `${sliceTextureLarge} 800w, ${sliceTextureLarge} 1920w`,
@@ -164,16 +171,16 @@ export const Home = () => {
       <ProjectSummary
         id="project-4"
         alternate
-        sectionRef={projectThree}
-        visible={visibleSections.includes(projectThree.current)}
+        sectionRef={projectFour}
+        visible={visibleSections.includes(projectFour.current)}
         index={4}
-        title="Animart"
-        description="Built a secure, scalable e-commerce platform using MERN stack, boosting engagement by 10%."
+        title="Anymart"
+        description="Built a secure, scalable e-commerce platform using MERN stack with features including payment integration, order management, and real-time inventory tracking"
         buttonText="View Website"
         buttonLink="https://anymart.onrender.com/"
         model={{
           type: 'phone',
-          alt: 'App login screen',
+          alt: 'Anymart e-commerce app',
           textures: [
             {
               srcSet: `${animartLarge} 375w, ${animartLarge} 750w`,
@@ -186,6 +193,103 @@ export const Home = () => {
           ],
         }}
       />
+      {showAllProjects && (
+        <>
+          <ProjectSummary
+            id="project-5"
+            sectionRef={projectFive}
+            visible={visibleSections.includes(projectFive.current)}
+            index={5}
+            title="The Crazy Mountaineers"
+            description="Designed and developed a dynamic travel agency platform with integrated booking system, payment gateway, and admin dashboard for tour package management"
+            buttonText="View Website"
+            buttonLink="https://thecrazymountaineers.in/"
+            model={{
+              type: 'laptop',
+              alt: 'The Crazy Mountaineers travel platform',
+              textures: [
+                {
+                  srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
+                  placeholder: sprTexturePlaceholder,
+                },
+              ],
+            }}
+          />
+          <ProjectSummary
+            id="project-6"
+            alternate
+            sectionRef={projectSix}
+            visible={visibleSections.includes(projectSix.current)}
+            index={6}
+            title="Yumy"
+            description="Developed a full-featured food ordering platform with restaurant management, real-time order tracking, and integrated payment solutions using MERN stack"
+            buttonText="View Website"
+            buttonLink="https://yumy.onrender.com/"
+            model={{
+              type: 'phone',
+              alt: 'Yumy food ordering app',
+              textures: [
+                {
+                  srcSet: `${gamestackTextureLarge} 375w, ${gamestackTextureLarge} 750w`,
+                  placeholder: gamestackTexturePlaceholder,
+                },
+                {
+                  srcSet: `${gamestackTexture2Large} 375w, ${gamestackTexture2Large} 750w`,
+                  placeholder: gamestackTexture2Placeholder,
+                },
+              ],
+            }}
+          />
+          <ProjectSummary
+            id="project-7"
+            sectionRef={projectSeven}
+            visible={visibleSections.includes(projectSeven.current)}
+            index={7}
+            title="Crypto Nova"
+            description="Developed a comprehensive cryptocurrency analytics platform with real-time market data, advanced charting, and portfolio tracking features using React and blockchain APIs"
+            buttonText="View Website"
+            buttonLink="https://cryptonovafa.netlify.app/"
+            model={{
+              type: 'laptop',
+              alt: 'Crypto Nova analytics platform',
+              textures: [
+                {
+                  srcSet: `${sliceTextureLarge} 800w, ${sliceTextureLarge} 1920w`,
+                  placeholder: sliceTexturePlaceholder,
+                },
+              ],
+            }}
+          />
+        </>
+      )}
+      {!showAllProjects && (
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '60px 0' }}>
+          <button
+            onClick={() => setShowAllProjects(true)}
+            style={{
+              background: 'rgb(0, 229, 255)',
+              color: 'rgb(0, 0, 0)',
+              border: 'none',
+              padding: '16px 32px',
+              fontSize: '16px',
+              fontWeight: '500',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'rgb(0, 200, 230)';
+              e.target.style.transform = 'scale(1.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'rgb(0, 229, 255)';
+              e.target.style.transform = 'scale(1)';
+            }}
+          >
+            View More Projects
+          </button>
+        </div>
+      )}
       <Profile
         sectionRef={details}
         visible={visibleSections.includes(details.current)}

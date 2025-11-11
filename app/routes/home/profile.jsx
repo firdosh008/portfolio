@@ -20,28 +20,26 @@ const ProfileText = ({ visible, titleId }) => (
       <DecoderText text="Hi there" start={visible} delay={500} />
     </Heading>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-    I'm a full-stack software engineer with articles in scalable web apps, AI-driven platforms, and crypto tools. I specialize in building intuitive, high-performance, and accessible digital experiences that drive innovation.
+    I'm a full-stack software engineer with expertise in scalable web applications, AI-driven platforms, and blockchain solutions. I specialize in building intuitive, high-performance, and accessible digital experiences that drive innovation and deliver real-world impact.
     </Text>
     <Text className={styles.description} data-visible={visible} size="l" >
-      <p><strong>Frontend:</strong> React.js, Next.js, TypeScript, Tailwind CSS</p>
-      <p><strong>Backend:</strong> Node.js, Express.js, MongoDB, SQL</p>
-      <p><strong>Tools:</strong> Docker, Postman, Firebase, Git</p>
+      <p><strong>Frontend:</strong> React.js, Next.js, React Native, TypeScript, Tailwind CSS, Redux</p>
+      <p><strong>Backend:</strong> Node.js, Express.js, MongoDB, PostgreSQL, Firebase</p>
+      <p><strong>Tools & DevOps:</strong> Docker, AWS, Git, Postman, CI/CD</p>
     </Text>
   
     <Text className={styles.description} data-visible={visible} size="l" >
-      Education Timeline:
     <div className={styles.timeline} data-visible={visible}>
       <div className={styles.timelineItem}>
-        <div className={styles.timelineDate}>2021 - 2025</div>
         <div className={styles.timelineContent}>
           <strong>B.Tech in Computer Science</strong>
-          <p>Graphic Era University, India</p>
+          <p>Graphic Era University, India (8.7 cgpa)</p>
         </div>
       </div>
       </div>
     </Text>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      I’m always excited to learn, experiment, and collaborate on projects that push boundaries. Let’s build something amazing together! 🚀.
+      I'm passionate about building scalable solutions that solve real-world problems. Always excited to learn new technologies and collaborate on innovative projects that make a difference.
     </Text>
   </Fragment>
 );
@@ -97,7 +95,7 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   width={960}
                   height={1280}
                   sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                  alt="Me smiling like a goofball at the Qwilr office in Sydney"
+                  alt="Firdosh Ahmad - Full Stack Developer"
                 />
                 <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
                   <use href={`${katakana}#katakana-profile`} />

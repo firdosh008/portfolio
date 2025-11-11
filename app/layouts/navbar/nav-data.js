@@ -26,8 +26,8 @@ export const socialLinks = [
     icon: 'github',
   },
   {
-    label: 'Linkdin',
-    url: `https://www.linkedin.com/in/ahmadfirdosh}`,
+    label: 'LinkedIn',
+    url: `https://www.linkedin.com/in/ahmadfirdosh`,
     icon: 'linkedin',
   },
 ];
