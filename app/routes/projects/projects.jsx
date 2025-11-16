@@ -15,45 +15,20 @@ import cryptoNovaImage from '~/assets/crypto-nova.png';
 import flatlineImage from '~/assets/flatline.png';
 import { Footer } from '~/components/footer';
 import { baseMeta } from '~/utils/meta';
-import { Intro } from './intro';
-import { Profile } from './profile';
-import { ProjectSummary } from './project-summary';
+import { ProjectSummary } from '../home/project-summary';
 import { useEffect, useRef, useState } from 'react';
 import config from '~/config.json';
-import styles from './home.module.css';
-
-// Prefetch draco decoader wasm
-export const links = () => {
-  return [
-    {
-      rel: 'prefetch',
-      href: '/draco/draco_wasm_wrapper.js',
-      as: 'script',
-      type: 'text/javascript',
-      importance: 'low',
-    },
-    {
-      rel: 'prefetch',
-      href: '/draco/draco_decoder.wasm',
-      as: 'fetch',
-      type: 'application/wasm',
-      importance: 'low',
-    },
-  ];
-};
+import styles from './projects.module.css';
 
 export const meta = () => {
   return baseMeta({
-    title: 'Full-Stack Developer',
-    description: `Portfolio of ${config.name} — a full-stack software engineer specializing in scalable web apps, AI-driven platforms, and blockchain solutions.`,
+    title: 'Projects - Full-Stack Developer',
+    description: `All projects by ${config.name} — showcasing full-stack web apps, AI platforms, and blockchain solutions.`,
   });
 };
 
-export const Home = () => {
+export const Projects = () => {
   const [visibleSections, setVisibleSections] = useState([]);
-  const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
-  const [showAllProjects, setShowAllProjects] = useState(false);
-  const intro = useRef();
   const projectOne = useRef();
   const projectTwo = useRef();
   const projectThree = useRef();
@@ -61,10 +36,9 @@ export const Home = () => {
   const projectFive = useRef();
   const projectSix = useRef();
   const projectSeven = useRef();
-  const details = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, projectSeven, details];
+    const sections = [projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, projectSeven];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -80,34 +54,19 @@ export const Home = () => {
       { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
     );
 
-    const indicatorObserver = new IntersectionObserver(
-      ([entry]) => {
-        setScrollIndicatorHidden(!entry.isIntersecting);
-      },
-      { rootMargin: '-100% 0px 0px 0px' }
-    );
-
     sections.forEach(section => {
       if (section.current) {
         sectionObserver.observe(section.current);
       }
     });
 
-    indicatorObserver.observe(intro.current);
-
     return () => {
       sectionObserver.disconnect();
-      indicatorObserver.disconnect();
     };
   }, [visibleSections]);
 
   return (
-    <div className={styles.home}>
-      <Intro
-        id="intro"
-        sectionRef={intro}
-        scrollIndicatorHidden={scrollIndicatorHidden}
-      />
+    <div className={styles.projects}>
       <ProjectSummary
         id="project-1"
         sectionRef={projectOne}
@@ -198,111 +157,73 @@ export const Home = () => {
           ],
         }}
       />
-      {showAllProjects && (
-        <>
-          <ProjectSummary
-            id="project-5"
-            sectionRef={projectFive}
-            visible={visibleSections.includes(projectFive.current)}
-            index={5}
-            title="The Crazy Mountaineers"
-            description="Designed and developed a dynamic travel agency platform with integrated booking system, payment gateway, and admin dashboard for tour package management"
-            buttonText="View Website"
-            buttonLink="https://thecrazymountaineers.in/"
-            model={{
-              type: 'laptop',
-              alt: 'The Crazy Mountaineers travel platform',
-              textures: [
-                {
-                  srcSet: `${sliceTextureLarge} 1280w, ${sliceTextureLarge} 2560w`,
-                  placeholder: sliceTexturePlaceholder,
-                },
-              ],
-            }}
-          />
-          <ProjectSummary
-            id="project-6"
-            alternate
-            sectionRef={projectSix}
-            visible={visibleSections.includes(projectSix.current)}
-            index={6}
-            title="Yumy"
-            description="Developed a full-featured food ordering platform with restaurant management, real-time order tracking, and integrated payment solutions using MERN stack"
-            buttonText="View Website"
-            buttonLink="https://yumy.onrender.com/"
-            model={{
-              type: 'phone',
-              alt: 'Yumy food ordering app',
-              textures: [
-                {
-                  srcSet: `${yummyImage} 375w, ${yummyImage} 750w`,
-                  placeholder: gamestackTexturePlaceholder,
-                },
-                {
-                  srcSet: `${yummy2Image} 375w, ${yummy2Image} 750w`,
-                  placeholder: gamestackTexture2Placeholder,
-                },
-              ],
-            }}
-          />
-          <ProjectSummary
-            id="project-7"
-            sectionRef={projectSeven}
-            visible={visibleSections.includes(projectSeven.current)}
-            index={7}
-            title="Crypto Nova"
-            description="Developed a comprehensive cryptocurrency analytics platform with real-time market data, advanced charting, and portfolio tracking features using React and blockchain APIs"
-            buttonText="View Website"
-            buttonLink="https://cryptonovafa.netlify.app/"
-            model={{
-              type: 'laptop',
-              alt: 'Crypto Nova analytics platform',
-              textures: [
-                {
-                  srcSet: `${cryptoNovaImage} 800w, ${cryptoNovaImage} 1920w`,
-                  placeholder: sliceTexturePlaceholder,
-                },
-              ],
-            }}
-          />
-        </>
-      )}
-      {!showAllProjects && (
-        <div style={{ display: 'flex', justifyContent: 'center', padding: '60px 0' }}>
-          <a
-            href="/projects"
-            style={{
-              background: 'rgb(0, 229, 255)',
-              color: 'rgb(0, 0, 0)',
-              border: 'none',
-              padding: '16px 32px',
-              fontSize: '16px',
-              fontWeight: '500',
-              borderRadius: '8px',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              textDecoration: 'none',
-              display: 'inline-block',
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background = 'rgb(0, 200, 230)';
-              e.target.style.transform = 'scale(1.05)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = 'rgb(0, 229, 255)';
-              e.target.style.transform = 'scale(1)';
-            }}
-          >
-            View More Projects
-          </a>
-        </div>
-      )}
-      <Profile
-        sectionRef={details}
-        visible={visibleSections.includes(details.current)}
-        id="details"
+      <ProjectSummary
+        id="project-5"
+        sectionRef={projectFive}
+        visible={visibleSections.includes(projectFive.current)}
+        index={5}
+        title="The Crazy Mountaineers"
+        description="Designed and developed a dynamic travel agency platform with integrated booking system, payment gateway, and admin dashboard for tour package management"
+        buttonText="View Website"
+        buttonLink="https://thecrazymountaineers.in/"
+        model={{
+          type: 'laptop',
+          alt: 'The Crazy Mountaineers travel platform',
+          textures: [
+            {
+              srcSet: `${sliceTextureLarge} 1280w, ${sliceTextureLarge} 2560w`,
+              placeholder: sliceTexturePlaceholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-6"
+        alternate
+        sectionRef={projectSix}
+        visible={visibleSections.includes(projectSix.current)}
+        index={6}
+        title="Yumy"
+        description="Developed a full-featured food ordering platform with restaurant management, real-time order tracking, and integrated payment solutions using MERN stack"
+        buttonText="View Website"
+        buttonLink="https://yumy.onrender.com/"
+        model={{
+          type: 'phone',
+          alt: 'Yumy food ordering app',
+          textures: [
+            {
+              srcSet: `${yummyImage} 375w, ${yummyImage} 750w`,
+              placeholder: gamestackTexturePlaceholder,
+            },
+            {
+              srcSet: `${yummy2Image} 375w, ${yummy2Image} 750w`,
+              placeholder: gamestackTexture2Placeholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-7"
+        sectionRef={projectSeven}
+        visible={visibleSections.includes(projectSeven.current)}
+        index={7}
+        title="Crypto Nova"
+        description="Developed a comprehensive cryptocurrency analytics platform with real-time market data, advanced charting, and portfolio tracking features using React and blockchain APIs"
+        buttonText="View Website"
+        buttonLink="https://cryptonovafa.netlify.app/"
+        model={{
+          type: 'laptop',
+          alt: 'Crypto Nova analytics platform',
+          textures: [
+            {
+              srcSet: `${cryptoNovaImage} 800w, ${cryptoNovaImage} 1920w`,
+              placeholder: sliceTexturePlaceholder,
+            },
+          ],
+        }}
       />
       <Footer />
     </div>
   );
 };
+
