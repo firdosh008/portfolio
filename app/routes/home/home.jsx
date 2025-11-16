@@ -8,6 +8,11 @@ import sliceTextureLarge from '~/assets/slice-app-large.jpg';
 import sliceTexturePlaceholder from '~/assets/slice-app-placeholder.jpg';
 import sprTexturePlaceholder from '~/assets/spr-lesson-builder-dark-placeholder.jpg';
 import sprTexture from '~/assets/spr-lesson-builder-dark.jpg';
+import llmControls from '~/assets/llm_controls.png';
+import yummyImage from '~/assets/yummy.png';
+import yummy2Image from '~/assets/yummy2.png';
+import cryptoNovaImage from '~/assets/crypto-nova.png';
+import flatlineImage from '~/assets/flatline.png';
 import { Footer } from '~/components/footer';
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
@@ -162,7 +167,7 @@ export const Home = () => {
           alt: 'LLM Controls platform',
           textures: [
             {
-              srcSet: `${sliceTextureLarge} 800w, ${sliceTextureLarge} 1920w`,
+              srcSet: `${llmControls} 800w, ${llmControls} 1920w`,
               placeholder: sliceTexturePlaceholder,
             },
           ],
@@ -209,8 +214,8 @@ export const Home = () => {
               alt: 'The Crazy Mountaineers travel platform',
               textures: [
                 {
-                  srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
-                  placeholder: sprTexturePlaceholder,
+                  srcSet: `${sliceTextureLarge} 1280w, ${sliceTextureLarge} 2560w`,
+                  placeholder: sliceTexturePlaceholder,
                 },
               ],
             }}
@@ -230,11 +235,11 @@ export const Home = () => {
               alt: 'Yumy food ordering app',
               textures: [
                 {
-                  srcSet: `${gamestackTextureLarge} 375w, ${gamestackTextureLarge} 750w`,
+                  srcSet: `${yummyImage} 375w, ${yummyImage} 750w`,
                   placeholder: gamestackTexturePlaceholder,
                 },
                 {
-                  srcSet: `${gamestackTexture2Large} 375w, ${gamestackTexture2Large} 750w`,
+                  srcSet: `${yummy2Image} 375w, ${yummy2Image} 750w`,
                   placeholder: gamestackTexture2Placeholder,
                 },
               ],
@@ -254,7 +259,7 @@ export const Home = () => {
               alt: 'Crypto Nova analytics platform',
               textures: [
                 {
-                  srcSet: `${sliceTextureLarge} 800w, ${sliceTextureLarge} 1920w`,
+                  srcSet: `${cryptoNovaImage} 800w, ${cryptoNovaImage} 1920w`,
                   placeholder: sliceTexturePlaceholder,
                 },
               ],
