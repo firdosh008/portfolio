@@ -13,6 +13,8 @@ import yummyImage from '~/assets/yummy.png';
 import yummy2Image from '~/assets/yummy2.png';
 import objsImage from '~/assets/objs.png';
 import flatlineImage from '~/assets/flatline.png';
+import sraHotelImage1 from '~/assets/sra_htole_1.png';
+import sraHotelImage2 from '~/assets/sra_hotle_2.png';
 import { Footer } from '~/components/footer';
 import { baseMeta } from '~/utils/meta';
 import { ProjectSummary } from '../home/project-summary';
@@ -36,9 +38,10 @@ export const Projects = () => {
   const projectFive = useRef();
   const projectSix = useRef();
   const projectSeven = useRef();
+  const projectEight = useRef();
 
   useEffect(() => {
-    const sections = [projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, projectSeven];
+    const sections = [projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, projectSeven, projectEight];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -118,7 +121,7 @@ export const Projects = () => {
         visible={visibleSections.includes(projectThree.current)}
         index={3}
         title="The Crazy Mountaineers"
-        description="Designed and developed a dynamic travel agency platform with integrated booking system, payment gateway, and admin dashboard for tour package management. Created comprehensive itinerary management system allowing customers to browse, customize, and book travel packages. Implemented real-time availability checking and automated confirmation system to streamline the booking process."
+        description="Architected and deployed a full-stack travel booking application leveraging React.js with TypeScript for frontend development and Node.js, Express.js, and MySQL for backend services and data persistence. Built modular and reusable UI components with responsive design principles. Developed secure REST APIs supporting itinerary customization, booking lifecycle management, and user authentication. Implemented payment gateway integration, real-time availability validation, and role-based admin panel for package and transaction management, improving operational efficiency and user booking experience."
         buttonText="View Website"
         buttonLink="https://thecrazymountaineers.com/"
         model={{
@@ -218,6 +221,31 @@ export const Projects = () => {
             {
               srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
               placeholder: sprTexturePlaceholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-8"
+        alternate
+        sectionRef={projectEight}
+        visible={visibleSections.includes(projectEight.current)}
+        index={8}
+        title="SRA Hotels"
+        description="Designed and developed a visually stunning, multi-page hotel website with engaging UI and smooth animations. The site includes Home, About, Services, Rooms, Booking, Gallery, Team, Testimonials, and Contact pages with responsive layouts and dynamic animation effects to enhance user interaction and visual appeal. Built using HTML, CSS, and JavaScript, the website showcases premium hotel offerings, room details, and service information, creating an immersive and user-friendly browsing experience."
+        buttonText="View Website"
+        buttonLink="#"
+        model={{
+          type: 'phone',
+          alt: 'SRA Hotels mobile app',
+          textures: [
+            {
+              srcSet: `${sraHotelImage1} 375w, ${sraHotelImage1} 750w`,
+              placeholder: gamestackTexturePlaceholder,
+            },
+            {
+              srcSet: `${sraHotelImage2} 375w, ${sraHotelImage2} 750w`,
+              placeholder: gamestackTexture2Placeholder,
             },
           ],
         }}
