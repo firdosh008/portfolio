@@ -64,7 +64,7 @@ export const Home = () => {
   const details = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, projectFive, projectSix, projectSeven, details];
+    const sections = [intro, projectOne, projectTwo, projectThree, projectFive, projectSix, projectSeven, details];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -113,17 +113,17 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="Preplix"
-        description="Designed and developed a scalable online learning platform for higher education using Next.js, featuring real-time progress tracking and interactive course management"
+        title="LLM Controls"
+        description="Built an advanced AI control platform for managing and monitoring large language models with real-time analytics, prompt optimization, and security controls. Developed visual workflow orchestration system enabling dynamic configuration of LLMs, vector databases, and tools across multiple client use cases. Implemented MLflow for experiment tracking and performance monitoring, along with an agentic RFP automation system using specialized AI agents."
         buttonText="View Website"
-        buttonLink="https://preplix.com/"
+        buttonLink="https://app.llmcontrols.ai/"
         model={{
           type: 'laptop',
-          alt: 'Preplix learning platform',
+          alt: 'LLM Controls platform',
           textures: [
             {
-              srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
-              placeholder: sprTexturePlaceholder,
+              srcSet: `${llmControls} 800w, ${llmControls} 1920w`,
+              placeholder: sliceTexturePlaceholder,
             },
           ],
         }}
@@ -135,7 +135,7 @@ export const Home = () => {
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
         title="FlexiPaisa"
-        description="Built a production-grade lending services mobile application using React Native, serving business entities and MSME employees with secure loan management and real-time tracking"
+        description="Built a production-grade lending services mobile application using React Native, serving business entities and MSME employees with secure loan management and real-time tracking. Implemented comprehensive financial workflows including loan application processing, credit assessment, and automated repayment scheduling. Integrated secure payment gateways and real-time notifications to enhance user experience and operational efficiency."
         buttonText="View on Play Store"
         buttonLink="https://play.google.com/store/apps/details?id=com.madhurinstalments.flexipaisa&hl=en_IN"
         model={{
@@ -158,42 +158,17 @@ export const Home = () => {
         sectionRef={projectThree}
         visible={visibleSections.includes(projectThree.current)}
         index={3}
-        title="LLM Controls"
-        description="Built an advanced AI control platform for managing and monitoring large language models with real-time analytics, prompt optimization, and security controls"
+        title="Preplix"
+        description="Designed and developed a scalable online learning platform for higher education using Next.js, featuring real-time progress tracking and interactive course management. Built comprehensive learning management system with video streaming, assignment submissions, and automated grading capabilities. Implemented advanced analytics dashboard for educators to monitor student engagement and performance metrics."
         buttonText="View Website"
-        buttonLink="https://app.llmcontrols.ai/"
+        buttonLink="https://preplix.com/"
         model={{
           type: 'laptop',
-          alt: 'LLM Controls platform',
+          alt: 'Preplix learning platform',
           textures: [
             {
-              srcSet: `${llmControls} 800w, ${llmControls} 1920w`,
-              placeholder: sliceTexturePlaceholder,
-            },
-          ],
-        }}
-      />
-      <ProjectSummary
-        id="project-4"
-        alternate
-        sectionRef={projectFour}
-        visible={visibleSections.includes(projectFour.current)}
-        index={4}
-        title="Anymart"
-        description="Built a secure, scalable e-commerce platform using MERN stack with features including payment integration, order management, and real-time inventory tracking"
-        buttonText="View Website"
-        buttonLink="https://anymart.onrender.com/"
-        model={{
-          type: 'phone',
-          alt: 'Anymart e-commerce app',
-          textures: [
-            {
-              srcSet: `${animartLarge} 375w, ${animartLarge} 750w`,
-              placeholder: gamestackTexturePlaceholder,
-            },
-            {
-              srcSet: `${animart2Large} 375w, ${animart2Large} 750w`,
-              placeholder: gamestackTexture2Placeholder,
+              srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
+              placeholder: sprTexturePlaceholder,
             },
           ],
         }}

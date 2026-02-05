@@ -72,17 +72,17 @@ export const Projects = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="Preplix"
-        description="Designed and developed a scalable online learning platform for higher education using Next.js, featuring real-time progress tracking and interactive course management"
+        title="Objs"
+        description="Worked with Objs.ai, an AI-driven workspace platform that converts uploaded files into semantic vector representations so users can interact with their content conversationally. The service processes documents (such as PDFs, notes, and other data), generates embedding vectors, and enables powerful search and question-answering over the file content with context-aware responses, rich previews, and markdown-formatted answers — helping build AI apps that make files easily understandable and actionable."
         buttonText="View Website"
-        buttonLink="https://preplix.com/"
+        buttonLink="https://objs.ai/"
         model={{
           type: 'laptop',
-          alt: 'Preplix learning platform',
+          alt: 'Objs analytics platform',
           textures: [
             {
-              srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
-              placeholder: sprTexturePlaceholder,
+              srcSet: `${objsImage} 800w, ${objsImage} 1920w`,
+              placeholder: sliceTexturePlaceholder,
             },
           ],
         }}
@@ -93,53 +93,8 @@ export const Projects = () => {
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="FlexiPaisa"
-        description="Built a production-grade lending services mobile application using React Native, serving business entities and MSME employees with secure loan management and real-time tracking"
-        buttonText="View on Play Store"
-        buttonLink="https://play.google.com/store/apps/details?id=com.madhurinstalments.flexipaisa&hl=en_IN"
-        model={{
-          type: 'phone',
-          alt: 'FlexiPaisa mobile app',
-          textures: [
-            {
-              srcSet: `${gamestackTextureLarge} 375w, ${gamestackTextureLarge} 750w`,
-              placeholder: gamestackTexturePlaceholder,
-            },
-            {
-              srcSet: `${gamestackTexture2Large} 375w, ${gamestackTexture2Large} 750w`,
-              placeholder: gamestackTexture2Placeholder,
-            },
-          ],
-        }}
-      />
-      <ProjectSummary
-        id="project-3"
-        sectionRef={projectThree}
-        visible={visibleSections.includes(projectThree.current)}
-        index={3}
-        title="LLM Controls"
-        description="Built an advanced AI control platform for managing and monitoring large language models with real-time analytics, prompt optimization, and security controls"
-        buttonText="View Website"
-        buttonLink="https://app.llmcontrols.ai/"
-        model={{
-          type: 'laptop',
-          alt: 'LLM Controls platform',
-          textures: [
-            {
-              srcSet: `${llmControls} 800w, ${llmControls} 1920w`,
-              placeholder: sliceTexturePlaceholder,
-            },
-          ],
-        }}
-      />
-      <ProjectSummary
-        id="project-4"
-        alternate
-        sectionRef={projectFour}
-        visible={visibleSections.includes(projectFour.current)}
-        index={4}
         title="Anymart"
-        description="Built a secure, scalable e-commerce platform using MERN stack with features including payment integration, order management, and real-time inventory tracking"
+        description="Built a secure, scalable e-commerce platform using MERN stack with features including payment integration, order management, and real-time inventory tracking. Implemented comprehensive admin dashboard for product management, order processing, and customer analytics. Integrated multiple payment gateways and shipping providers to ensure seamless transaction processing and delivery management."
         buttonText="View Website"
         buttonLink="https://anymart.onrender.com/"
         model={{
@@ -158,12 +113,12 @@ export const Projects = () => {
         }}
       />
       <ProjectSummary
-        id="project-5"
-        sectionRef={projectFive}
-        visible={visibleSections.includes(projectFive.current)}
-        index={5}
+        id="project-3"
+        sectionRef={projectThree}
+        visible={visibleSections.includes(projectThree.current)}
+        index={3}
         title="The Crazy Mountaineers"
-        description="Designed and developed a dynamic travel agency platform with integrated booking system, payment gateway, and admin dashboard for tour package management"
+        description="Designed and developed a dynamic travel agency platform with integrated booking system, payment gateway, and admin dashboard for tour package management. Created comprehensive itinerary management system allowing customers to browse, customize, and book travel packages. Implemented real-time availability checking and automated confirmation system to streamline the booking process."
         buttonText="View Website"
         buttonLink="https://thecrazymountaineers.com/"
         model={{
@@ -178,13 +133,13 @@ export const Projects = () => {
         }}
       />
       <ProjectSummary
-        id="project-6"
+        id="project-4"
         alternate
-        sectionRef={projectSix}
-        visible={visibleSections.includes(projectSix.current)}
-        index={6}
+        sectionRef={projectFour}
+        visible={visibleSections.includes(projectFour.current)}
+        index={4}
         title="Yumy"
-        description="Developed a full-featured food ordering platform with restaurant management, real-time order tracking, and integrated payment solutions using MERN stack"
+        description="Developed a full-featured food ordering platform with restaurant management, real-time order tracking, and integrated payment solutions using MERN stack. Built comprehensive restaurant dashboard for menu management, order processing, and revenue analytics. Implemented real-time order status updates and push notifications to enhance customer experience and operational efficiency."
         buttonText="View Website"
         buttonLink="https://yumy.onrender.com/"
         model={{
@@ -203,21 +158,66 @@ export const Projects = () => {
         }}
       />
       <ProjectSummary
+        id="project-5"
+        sectionRef={projectFive}
+        visible={visibleSections.includes(projectFive.current)}
+        index={5}
+        title="LLM Controls"
+        description="Built an advanced AI control platform for managing and monitoring large language models with real-time analytics, prompt optimization, and security controls. Developed visual workflow orchestration system enabling dynamic configuration of LLMs, vector databases, and tools across multiple client use cases. Implemented MLflow for experiment tracking and performance monitoring, along with an agentic RFP automation system using specialized AI agents."
+        buttonText="View Website"
+        buttonLink="https://app.llmcontrols.ai/"
+        model={{
+          type: 'laptop',
+          alt: 'LLM Controls platform',
+          textures: [
+            {
+              srcSet: `${llmControls} 800w, ${llmControls} 1920w`,
+              placeholder: sliceTexturePlaceholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-6"
+        alternate
+        sectionRef={projectSix}
+        visible={visibleSections.includes(projectSix.current)}
+        index={6}
+        title="FlexiPaisa"
+        description="Built a production-grade lending services mobile application using React Native, serving business entities and MSME employees with secure loan management and real-time tracking. Implemented comprehensive financial workflows including loan application processing, credit assessment, and automated repayment scheduling. Integrated secure payment gateways and real-time notifications to enhance user experience and operational efficiency."
+        buttonText="View on Play Store"
+        buttonLink="https://play.google.com/store/apps/details?id=com.madhurinstalments.flexipaisa&hl=en_IN"
+        model={{
+          type: 'phone',
+          alt: 'FlexiPaisa mobile app',
+          textures: [
+            {
+              srcSet: `${gamestackTextureLarge} 375w, ${gamestackTextureLarge} 750w`,
+              placeholder: gamestackTexturePlaceholder,
+            },
+            {
+              srcSet: `${gamestackTexture2Large} 375w, ${gamestackTexture2Large} 750w`,
+              placeholder: gamestackTexture2Placeholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
         id="project-7"
         sectionRef={projectSeven}
         visible={visibleSections.includes(projectSeven.current)}
         index={7}
-        title="Objs"
-        description="Worked with Objs.ai, an AI-driven workspace platform that converts uploaded files into semantic vector representations so users can interact with their content conversationally. The service processes documents (such as PDFs, notes, and other data), generates embedding vectors, and enables powerful search and question-answering over the file content with context-aware responses, rich previews, and markdown-formatted answers — helping build AI apps that make files easily understandable and actionable."
+        title="Preplix"
+        description="Designed and developed a scalable online learning platform for higher education using Next.js, featuring real-time progress tracking and interactive course management. Built comprehensive learning management system with video streaming, assignment submissions, and automated grading capabilities. Implemented advanced analytics dashboard for educators to monitor student engagement and performance metrics."
         buttonText="View Website"
-        buttonLink="https://objs.ai/"
+        buttonLink="https://preplix.com/"
         model={{
           type: 'laptop',
-          alt: 'Objs analytics platform',
+          alt: 'Preplix learning platform',
           textures: [
             {
-              srcSet: `${objsImage} 800w, ${objsImage} 1920w`,
-              placeholder: sliceTexturePlaceholder,
+              srcSet: `${sprTexture} 1280w, ${sprTexture} 2560w`,
+              placeholder: sprTexturePlaceholder,
             },
           ],
         }}
