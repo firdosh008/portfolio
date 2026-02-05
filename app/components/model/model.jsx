@@ -91,24 +91,24 @@ export const Model = ({
   useEffect(() => {
     const { clientWidth, clientHeight } = container.current;
 
-    renderer.current = new WebGLRenderer({
-      canvas: canvas.current,
-      alpha: true,
-      antialias: false,
-      powerPreference: 'high-performance',
-      failIfMajorPerformanceCaveat: true,
-    });
+    try {
+      renderer.current = new WebGLRenderer({
+        canvas: canvas.current,
+        alpha: true,
+        antialias: false,
+        powerPreference: 'high-performance',
+      });
 
-    renderer.current.setPixelRatio(2);
-    renderer.current.setSize(clientWidth, clientHeight);
-    renderer.current.outputColorSpace = SRGBColorSpace;
+      renderer.current.setPixelRatio(2);
+      renderer.current.setSize(clientWidth, clientHeight);
+      renderer.current.outputColorSpace = SRGBColorSpace;
 
-    camera.current = new PerspectiveCamera(36, clientWidth / clientHeight, 0.1, 100);
-    camera.current.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
-    scene.current = new Scene();
+      camera.current = new PerspectiveCamera(36, clientWidth / clientHeight, 0.1, 100);
+      camera.current.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
+      scene.current = new Scene();
 
-    modelGroup.current = new Group();
-    scene.current.add(modelGroup.current);
+      modelGroup.current = new Group();
+      scene.current.add(modelGroup.current);
 
     // Lighting
     const ambientLight = new AmbientLight(0xffffff, 1.2);
@@ -207,22 +207,27 @@ export const Model = ({
     verticalBlurMaterial.current = new ShaderMaterial(VerticalBlurShader);
     verticalBlurMaterial.current.depthTest = false;
 
-    const unsubscribeX = rotationX.on('change', renderFrame);
-    const unsubscribeY = rotationY.on('change', renderFrame);
+      const unsubscribeX = rotationX.on('change', renderFrame);
+      const unsubscribeY = rotationY.on('change', renderFrame);
 
-    return () => {
-      renderTarget.current.dispose();
-      renderTargetBlur.current.dispose();
-      removeLights(lights.current);
-      cleanScene(scene.current);
-      cleanRenderer(renderer.current);
-      unsubscribeX();
-      unsubscribeY();
-    };
+      return () => {
+        if (renderTarget.current) renderTarget.current.dispose();
+        if (renderTargetBlur.current) renderTargetBlur.current.dispose();
+        if (lights.current) removeLights(lights.current);
+        if (scene.current) cleanScene(scene.current);
+        if (renderer.current) cleanRenderer(renderer.current);
+        unsubscribeX();
+        unsubscribeY();
+      };
+    } catch (error) {
+      console.error('Error creating WebGL context:', error);
+      return () => {};
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const blurShadow = useCallback(amount => {
+    if (!renderer.current || !blurPlane.current || !renderTarget.current || !renderTargetBlur.current || !shadowCamera.current) return;
     blurPlane.current.visible = true;
 
     // Blur horizontally and draw in the renderTargetBlur
@@ -246,6 +251,7 @@ export const Model = ({
 
   // Handle render passes for a single frame
   const renderFrame = useCallback(() => {
+    if (!renderer.current || !scene.current || !camera.current) return;
     const blurAmount = 5;
 
     // Remove the background
@@ -305,7 +311,7 @@ export const Model = ({
   // Handle window resize
   useEffect(() => {
     const handleResize = () => {
-      if (!container.current) return;
+      if (!container.current || !renderer.current || !camera.current) return;
 
       const { clientWidth, clientHeight } = container.current;
 
@@ -370,6 +376,7 @@ const Device = ({
 
   useEffect(() => {
     const applyScreenTexture = async (texture, node) => {
+      if (!renderer.current) return;
       texture.colorSpace = SRGBColorSpace;
       texture.flipY = false;
       texture.anisotropy = renderer.current.capabilities.getMaxAnisotropy();

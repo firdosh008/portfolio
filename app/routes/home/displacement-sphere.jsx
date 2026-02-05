@@ -51,49 +51,54 @@ export const DisplacementSphere = props => {
   useEffect(() => {
     const { innerWidth, innerHeight } = window;
     mouse.current = new Vector2(0.8, 0.5);
-    renderer.current = new WebGLRenderer({
-      canvas: canvasRef.current,
-      antialias: false,
-      alpha: true,
-      powerPreference: 'high-performance',
-      failIfMajorPerformanceCaveat: true,
-    });
-    renderer.current.setSize(innerWidth, innerHeight);
-    renderer.current.setPixelRatio(1);
-    renderer.current.outputColorSpace = LinearSRGBColorSpace;
+    try {
+      renderer.current = new WebGLRenderer({
+        canvas: canvasRef.current,
+        antialias: false,
+        alpha: true,
+        powerPreference: 'high-performance',
+      });
+      renderer.current.setSize(innerWidth, innerHeight);
+      renderer.current.setPixelRatio(1);
+      renderer.current.outputColorSpace = LinearSRGBColorSpace;
 
-    camera.current = new PerspectiveCamera(54, innerWidth / innerHeight, 0.1, 100);
-    camera.current.position.z = 52;
+      camera.current = new PerspectiveCamera(54, innerWidth / innerHeight, 0.1, 100);
+      camera.current.position.z = 52;
 
-    scene.current = new Scene();
+      scene.current = new Scene();
 
-    material.current = new MeshPhongMaterial();
-    material.current.onBeforeCompile = shader => {
-      uniforms.current = UniformsUtils.merge([
-        shader.uniforms,
-        { time: { type: 'f', value: 0 } },
-      ]);
+      material.current = new MeshPhongMaterial();
+      material.current.onBeforeCompile = shader => {
+        uniforms.current = UniformsUtils.merge([
+          shader.uniforms,
+          { time: { type: 'f', value: 0 } },
+        ]);
 
-      shader.uniforms = uniforms.current;
-      shader.vertexShader = vertexShader;
-      shader.fragmentShader = fragmentShader;
-    };
+        shader.uniforms = uniforms.current;
+        shader.vertexShader = vertexShader;
+        shader.fragmentShader = fragmentShader;
+      };
 
-    startTransition(() => {
-      geometry.current = new SphereGeometry(32, 128, 128);
-      sphere.current = new Mesh(geometry.current, material.current);
-      sphere.current.position.z = 0;
-      sphere.current.modifier = Math.random();
-      scene.current.add(sphere.current);
-    });
+      startTransition(() => {
+        geometry.current = new SphereGeometry(32, 128, 128);
+        sphere.current = new Mesh(geometry.current, material.current);
+        sphere.current.position.z = 0;
+        sphere.current.modifier = Math.random();
+        scene.current.add(sphere.current);
+      });
 
-    return () => {
-      cleanScene(scene.current);
-      cleanRenderer(renderer.current);
-    };
+      return () => {
+        if (scene.current) cleanScene(scene.current);
+        if (renderer.current) cleanRenderer(renderer.current);
+      };
+    } catch (error) {
+      console.error('Error creating WebGL context:', error);
+      return () => {};
+    }
   }, []);
 
   useEffect(() => {
+    if (!scene.current) return;
     const dirLight = new DirectionalLight(0xffffff, theme === 'light' ? 1.8 : 2.0);
     const ambientLight = new AmbientLight(0xffffff, theme === 'light' ? 2.7 : 0.4);
 
@@ -110,6 +115,7 @@ export const DisplacementSphere = props => {
   }, [theme]);
 
   useEffect(() => {
+    if (!renderer.current || !camera.current || !scene.current) return;
     const { width, height } = windowSize;
 
     const adjustedHeight = height + height * 0.3;
@@ -155,6 +161,7 @@ export const DisplacementSphere = props => {
   }, [isInViewport, reduceMotion, rotationX, rotationY]);
 
   useEffect(() => {
+    if (!renderer.current || !scene.current || !camera.current) return;
     let animation;
 
     const animate = () => {
@@ -164,9 +171,11 @@ export const DisplacementSphere = props => {
         uniforms.current.time.value = 0.00005 * (Date.now() - start.current);
       }
 
-      sphere.current.rotation.z += 0.001;
-      sphere.current.rotation.x = rotationX.get();
-      sphere.current.rotation.y = rotationY.get();
+      if (sphere.current) {
+        sphere.current.rotation.z += 0.001;
+        sphere.current.rotation.x = rotationX.get();
+        sphere.current.rotation.y = rotationY.get();
+      }
 
       renderer.current.render(scene.current, camera.current);
     };

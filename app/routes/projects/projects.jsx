@@ -4,14 +4,14 @@ import gamestackTextureLarge from '~/assets/gamestack-login-large.jpg';
 import animartLarge from '~/assets/animartLarge.jpg';
 import animart2Large from '~/assets/animartLarge2.jpg';
 import gamestackTexturePlaceholder from '~/assets/gamestack-login-placeholder.jpg';
-import sliceTextureLarge from '~/assets/slice-app-large.jpg';
+import sliceTextureLarge from '~/assets/slice-app-large.png';
 import sliceTexturePlaceholder from '~/assets/slice-app-placeholder.jpg';
 import sprTexturePlaceholder from '~/assets/spr-lesson-builder-dark-placeholder.jpg';
 import sprTexture from '~/assets/spr-lesson-builder-dark.jpg';
 import llmControls from '~/assets/llm_controls.png';
 import yummyImage from '~/assets/yummy.png';
 import yummy2Image from '~/assets/yummy2.png';
-import cryptoNovaImage from '~/assets/crypto-nova.png';
+import objsImage from '~/assets/objs.png';
 import flatlineImage from '~/assets/flatline.png';
 import { Footer } from '~/components/footer';
 import { baseMeta } from '~/utils/meta';
@@ -165,7 +165,7 @@ export const Projects = () => {
         title="The Crazy Mountaineers"
         description="Designed and developed a dynamic travel agency platform with integrated booking system, payment gateway, and admin dashboard for tour package management"
         buttonText="View Website"
-        buttonLink="https://thecrazymountaineers.in/"
+        buttonLink="https://thecrazymountaineers.com/"
         model={{
           type: 'laptop',
           alt: 'The Crazy Mountaineers travel platform',
@@ -207,16 +207,16 @@ export const Projects = () => {
         sectionRef={projectSeven}
         visible={visibleSections.includes(projectSeven.current)}
         index={7}
-        title="Crypto Nova"
-        description="Developed a comprehensive cryptocurrency analytics platform with real-time market data, advanced charting, and portfolio tracking features using React and blockchain APIs"
+        title="Objs"
+        description="Worked with Objs.ai, an AI-driven workspace platform that converts uploaded files into semantic vector representations so users can interact with their content conversationally. The service processes documents (such as PDFs, notes, and other data), generates embedding vectors, and enables powerful search and question-answering over the file content with context-aware responses, rich previews, and markdown-formatted answers — helping build AI apps that make files easily understandable and actionable."
         buttonText="View Website"
-        buttonLink="https://cryptonovafa.netlify.app/"
+        buttonLink="https://objs.ai/"
         model={{
           type: 'laptop',
-          alt: 'Crypto Nova analytics platform',
+          alt: 'Objs analytics platform',
           textures: [
             {
-              srcSet: `${cryptoNovaImage} 800w, ${cryptoNovaImage} 1920w`,
+              srcSet: `${objsImage} 800w, ${objsImage} 1920w`,
               placeholder: sliceTexturePlaceholder,
             },
           ],

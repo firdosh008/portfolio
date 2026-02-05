@@ -67,34 +67,39 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
 
   useEffect(() => {
     const cameraOptions = [width / -2, width / 2, height / 2, height / -2, 1, 1000];
-    renderer.current = new WebGLRenderer({
-      canvas: canvas.current,
-      antialias: false,
-      alpha: true,
-      powerPreference: 'high-performance',
-      failIfMajorPerformanceCaveat: true,
-    });
-    camera.current = new OrthographicCamera(...cameraOptions);
-    scene.current = new Scene();
-    renderer.current.setPixelRatio(2);
-    renderer.current.setClearColor(0x111111, 1.0);
-    renderer.current.setSize(width, height);
-    renderer.current.domElement.style.width = '100%';
-    renderer.current.domElement.style.height = 'auto';
-    scene.current.background = new Color(0x111111);
-    camera.current.position.z = 1;
+    try {
+      renderer.current = new WebGLRenderer({
+        canvas: canvas.current,
+        antialias: false,
+        alpha: true,
+        powerPreference: 'high-performance',
+      });
+      camera.current = new OrthographicCamera(...cameraOptions);
+      scene.current = new Scene();
+      renderer.current.setPixelRatio(2);
+      renderer.current.setClearColor(0x111111, 1.0);
+      renderer.current.setSize(width, height);
+      renderer.current.domElement.style.width = '100%';
+      renderer.current.domElement.style.height = 'auto';
+      scene.current.background = new Color(0x111111);
+      camera.current.position.z = 1;
 
-    return () => {
-      animating.current = false;
-      cleanScene(scene.current);
-      cleanRenderer(renderer.current);
-    };
+      return () => {
+        animating.current = false;
+        if (scene.current) cleanScene(scene.current);
+        if (renderer.current) cleanRenderer(renderer.current);
+      };
+    } catch (error) {
+      console.error('Error creating WebGL context:', error);
+      return () => {};
+    }
   }, [height, width]);
 
   useEffect(() => {
     let mounted = true;
 
     const loadImages = async () => {
+      if (!renderer.current || !scene.current || !camera.current) return;
       const anisotropy = renderer.current.capabilities.getMaxAnisotropy();
 
       const texturePromises = images.map(async image => {
@@ -229,7 +234,7 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
 
     const animate = () => {
       animation = requestAnimationFrame(animate);
-      if (animating.current) {
+      if (animating.current && renderer.current && scene.current && camera.current) {
         renderer.current.render(scene.current, camera.current);
       }
     };
@@ -277,7 +282,9 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
       uniforms.dispFactor.value = displacementClamp;
 
       requestAnimationFrame(() => {
-        renderer.current.render(scene.current, camera.current);
+        if (renderer.current && scene.current && camera.current) {
+          renderer.current.render(scene.current, camera.current);
+        }
       });
     },
     [canvasRect, imageIndex, images, textures]

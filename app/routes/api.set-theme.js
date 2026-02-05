@@ -11,8 +11,8 @@ export async function action({ request }) {
       maxAge: 604_800,
       path: '/',
       sameSite: 'lax',
-      secrets: [process.env.SESSION_SECRET || 'default-secret-key'],
-      secure: process.env.NODE_ENV === 'production',
+      secrets: [process.env.SESSION_SECRET || ' '],
+      secure: true,
     },
   });
 

@@ -7,6 +7,7 @@ import {
   useFetcher,
   useLoaderData,
   useNavigation,
+  useRevalidator,
   useRouteError,
 } from '@remix-run/react';
 import { createCookieSessionStorage, json } from '@remix-run/node';
@@ -81,6 +82,7 @@ export default function App() {
   let { canonicalUrl, theme } = useLoaderData();
   const fetcher = useFetcher();
   const { state } = useNavigation();
+  const revalidator = useRevalidator();
 
   if (fetcher.formData?.has('theme')) {
     theme = fetcher.formData.get('theme');
@@ -89,15 +91,25 @@ export default function App() {
   function toggleTheme(newTheme) {
     fetcher.submit(
       { theme: newTheme ? newTheme : theme === 'dark' ? 'light' : 'dark' },
-      { action: '/api/set-theme', method: 'post' }
+      { action: '/api/set-theme', method: 'post', navigate: false }
     );
   }
+
+  useEffect(() => {
+    if (fetcher.state === 'idle' && fetcher.data?.status === 'success') {
+      revalidator.revalidate();
+    }
+  }, [fetcher.state, fetcher.data, revalidator]);
 
   useEffect(() => {
     console.info(
       `Taking a peek huh? Check out the source code: ${config.repo}\n\n`
     );
   }, []);
+
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+  }, [theme]);
 
   return (
     <html lang="en">

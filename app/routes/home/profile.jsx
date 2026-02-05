@@ -23,9 +23,10 @@ const ProfileText = ({ visible, titleId }) => (
     I'm a full-stack software engineer with expertise in scalable web applications, AI-driven platforms, and blockchain solutions. I specialize in building intuitive, high-performance, and accessible digital experiences that drive innovation and deliver real-world impact.
     </Text>
     <Text className={styles.description} data-visible={visible} size="l" >
-      <p><strong>Frontend:</strong> React.js, Next.js, React Native, TypeScript, Tailwind CSS, Redux</p>
-      <p><strong>Backend:</strong> Node.js, Express.js, MongoDB, PostgreSQL, Firebase</p>
-      <p><strong>Tools & DevOps:</strong> Docker, AWS, Git, Postman, CI/CD</p>
+      <p><strong>Frontend:</strong> React.js, Next.js, TypeScript, JavaScript, Tailwind CSS, Material UI</p>
+      <p><strong>Backend:</strong> Python, FastAPI, Node.js, Express.js, REST APIs, JWT, MySQL</p>
+      <p><strong>AI / GenAI:</strong> LLM Orchestration, RAG Pipelines, MLflow, Multi-Agent Systems</p>
+      <p><strong>Tools:</strong> Git, GitHub, Postman, CI/CD, VS Code, Cursor, Agile</p>
     </Text>
   
     <Text className={styles.description} data-visible={visible} size="l" >

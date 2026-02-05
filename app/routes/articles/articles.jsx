@@ -19,9 +19,13 @@ const jsonData = [
     "title": "Full Stack Developer - LLMCONTROLS",
     "company": "Zemuria Venture Studio",
     "location": "Pondicherry",
-    "abstract": "Developing a software platform for AI workflow management and multi-agent orchestration, enabling customization across LLMs, vector databases, and AI tools. Building and maintaining the frontend using React.js and the backend using Python (Django, FastAPI). Collaborating on API integrations, system scalability, to optimize end-to-end performance.",
+    "abstract": `•	Developed an AI workflow orchestration platform enabling dynamic configuration of LLMs, vector databases, and tools across multiple client use cases.
+                 •	Built a visual flow-based React interface for LLM workflows and developed FastAPI backend services to power workflow components, enabling dynamic functionality and execution through React Flow.
+                 •	Implemented MLflow, enabling experiment tracking and performance monitoring for AI agents.
+                 •	Designed an agentic RFP automation system using 5 specialized AI agents, reducing manual proposal effort and improving bid accuracy through real-time market validation.
+                 `,
     "date": "2025-04-01",
-    "end": "Present",
+    "end": "2026-01-15",
     "banner": "/static/modern-styling-in-react-banner.jpg",
     "featured": true
   },
@@ -29,9 +33,12 @@ const jsonData = [
     "title": "Frontend Developer - E-learning Platform | Financial services App",
     "company": "One-For-Life",
     "location": "Remote",
-    "abstract": "Developed the frontend for two major platforms: an online GRE/IELTS prep platform and the Flexi-Paisa financial services app. Built responsive UIs with React.js, Next.js, and Material UI, designing 9 mobile and 12 web screens in collaboration with an 8-member cross-functional team. Integrated REST APIs for authentication, course flow, and payment modules using Axios and Postman, improving UX by 8% based on user feedback.",
-    "date": "2023-09-30",
-    "end": "2025-03-01",
+    "abstract": `•	Built responsive UIs for an E-learning platform and financial services app, delivering 21+ production screens across mobile and web.
+                 •	Integrated REST APIs for authentication, payments, and course flows, contributing to measurable UX improvements and smoother onboarding.
+                 •	Collaborated with an 8-member cross-functional team following Agile workflows.
+                  `,
+    "date": "2023-09-12",
+    "end": "2025-03-31",
     "banner": "/static/hello-world-banner.jpg",
     "featured": false
   },
@@ -96,9 +103,25 @@ function ArticlesPost({ frontmatter, index }) {
               {company} | {location}
             </Text>
           )}
-          <Text size={featured ? 'l' : 's'} as="p" style={{ marginTop: '12px' }}>
-            {abstract}
-          </Text>
+          {abstract.includes('•') ? (
+            <ul style={{ marginTop: '12px', paddingLeft: '20px', listStyle: 'none' }}>
+              {abstract
+                .split('•')
+                .filter(item => item.trim())
+                .map((item, index) => (
+                  <li key={index} style={{ marginBottom: '8px', position: 'relative', paddingLeft: '16px' }}>
+                    <span style={{ position: 'absolute', left: 0 }}>•</span>
+                    <Text size={featured ? 'l' : 's'} as="span">
+                      {item.trim()}
+                    </Text>
+                  </li>
+                ))}
+            </ul>
+          ) : (
+            <Text size={featured ? 'l' : 's'} as="p" style={{ marginTop: '12px' }}>
+              {abstract}
+            </Text>
+          )}
           <div className={styles.postFooter}>
             <Text className={styles.timecode} size="s">
               {dateEnd}
